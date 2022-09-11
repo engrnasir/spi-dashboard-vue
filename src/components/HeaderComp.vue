@@ -314,6 +314,7 @@ export default {
                 text-align: right;
                 margin-right: 20%;
                 @media only screen and (max-width:1560px) {
+                   margin-right: 0;
                    text-align: left;
                    display: flex;
                    align-items: center;
@@ -324,7 +325,7 @@ export default {
                     font-size: 48px;
                     color: #85C250;
                     margin-bottom: 32px;
-                    @media only screen and (max-width:980px) {
+                    @media only screen and (max-width:1560px) {
                         margin-bottom: 0;
                         margin-right: 15px;
                     }
