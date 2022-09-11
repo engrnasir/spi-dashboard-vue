@@ -313,10 +313,7 @@ export default {
             .right{
                 text-align: right;
                 margin-right: 20%;
-                @media only screen and (max-width:1220px){
-                    margin-right: 0;
-                }
-                @media only screen and (max-width:980px) {
+                @media only screen and (max-width:1560px) {
                    text-align: left;
                    display: flex;
                    align-items: center;
