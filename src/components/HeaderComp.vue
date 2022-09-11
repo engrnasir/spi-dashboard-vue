@@ -100,7 +100,7 @@ export default {
                 </ul>
             </div>
             <div class="chart-container">
-                    <LineChart/>
+                <LineChart/>
             </div>
             <div class="connectWallet" :class="nightMode? 'connectWallet-night':''">
                 <div class="navigation">
@@ -109,8 +109,8 @@ export default {
                         <div class="btn">liquidity</div>
                     </div>
                     <div class="spillage">
-                        <p class="text">spillage</p>
-                        <p class="value">{{spillageVal}}%</p>
+                        <p class="text">Slippage</p>
+                        <p class="value"><input type="number" placeholder="1" v-model="spillageVal">%</p>
                     </div>
                 </div>
                 <div class="swap swapFrom">
@@ -182,6 +182,9 @@ export default {
             right: 0;
             top: 0;
             opacity: .4;
+            @media only screen and (max-width:960px) {
+                width: 400px;
+            }
         }
     }
    
@@ -192,7 +195,11 @@ export default {
             align-items: center;
             justify-content: space-between;
             padding: 80px 0;
-
+            @media only screen and (max-width:1560px) {
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+            }
             .left{
                 .heading{
                     display: flex;
@@ -205,13 +212,19 @@ export default {
                         margin-right: 15px;
                     }
                     h1{
-                        font-weight: 700;
+                        font-weight: 600;
                         font-size: 48px;
                         margin-right: 22px;
+                        @media only screen and (max-width:400px) {
+                            font-size: 40px;
+                        }
                     }
                     p{
                         font-weight: 500;
                         font-size: 28px;
+                        @media only screen and (max-width:400px) {
+                            font-size: 20px;
+                        }
                     }
                 }
                 .heading-night{
@@ -220,6 +233,10 @@ export default {
                 .date{
                     display: flex;
                     align-items: center;
+                    @media only screen and (max-width:780px) {
+                        align-items: flex-start;
+                        flex-direction: column;
+                    }  
                     .filter{
                         display: flex;;
                         align-items: center;
@@ -227,6 +244,9 @@ export default {
                         border-radius: 7px;
                         background: #D1E8BD;
                         margin-right: 28px;
+                        @media only screen and (max-width:780px) {
+                            margin-bottom: 30px;
+                        }
                         .filter-item{
                             padding: 12px;
                             color: #383838;
@@ -246,6 +266,10 @@ export default {
                     .range{
                         display: flex;
                         align-items: center;
+                        @media only screen and (max-width:580px) {
+                            align-items: flex-start;
+                            flex-direction: column;
+                        }
                         input[type="date"]{
                             width: max-content;
                             min-width: 140px;
@@ -275,6 +299,9 @@ export default {
                             font-weight: 500;
                             font-size: 16px;
                             margin-right: 20px;
+                            @media only screen and (max-width:580px) {
+                                padding: 10px;
+                            }
                         }
                         .ending{}
                     }
@@ -289,16 +316,32 @@ export default {
                 @media only screen and (max-width:1220px){
                     margin-right: 0;
                 }
+                @media only screen and (max-width:980px) {
+                   text-align: left;
+                   display: flex;
+                   align-items: center;
+                   margin-top: 40px;
+                }
                 .firstval{
-                    font-weight: 700;
+                    font-weight: 600;
                     font-size: 48px;
                     color: #85C250;
                     margin-bottom: 32px;
+                    @media only screen and (max-width:980px) {
+                        margin-bottom: 0;
+                        margin-right: 15px;
+                    }
+                    @media only screen and (max-width:580px) {
+                        font-size: 36px;
+                    }
                 }
                 .secondVal{
                     font-weight: 600;
                     font-size: 28px;
                     color: #D1E8BD;
+                    @media only screen and (max-width:580px) {
+                        font-size: 20px;
+                    }
                 }
             }
         }
@@ -308,9 +351,18 @@ export default {
             justify-content: space-between;
             padding-bottom: 100px;
             border-bottom: 1px solid #85C250;
+            @media only screen and (max-width:1560px) {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
 
            
             .stats{
+                @media only screen and (max-width:1560px) {
+                    width: 100%;
+                    margin-bottom: 30px;
+                }
                 h2{
                     text-align: center;
                     text-transform: capitalize;
@@ -319,6 +371,13 @@ export default {
                     background: linear-gradient(180deg, #D1E8BD 0%, rgba(209, 232, 189, 0.25) 100%);
                     border-bottom: 1px solid #85C250;
                     border-radius: 7px 7px 0px 0px;
+                    @media only screen and (max-width:1560px) {
+                        width: 100%;
+                        font-size: 30px;
+                    }
+                    @media only screen and (max-width:780px) {
+                        font-weight: 500;
+                    }
                 }
                 .items{
                     list-style: none;
@@ -326,18 +385,43 @@ export default {
                     background: linear-gradient(180deg, #D1E8BD 0%, rgba(209, 232, 189, 0.25) 100%);
                     border-radius: 0px 0px 7px 7px;
                     padding-bottom: 36px;
+                    @media only screen and (max-width:1560px) {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-around;
+                    }
+                    @media only screen and (max-width:560px) {
+                        display: grid;
+                        grid-template-columns: repeat(2,1fr);
+                        justify-items: center;
+                    }
                     .item{
                         padding: 36px 16px;
                         padding-bottom: 0;
                         color: #85C250;
+                        font-weight: 500;
+                        @media only screen and (max-width:580px) {
+                            padding: 20px;
+                        }
                         .title{
-                            font-weight: 500;
                             font-size: 20px;
                             margin-bottom: 23px;
+                            @media only screen and (max-width:780px) {
+                                font-size: 16px;
+                            }
+                            @media only screen and (max-width:580px) {
+                                margin-bottom: 10px;
+                                width: max-content;
+                            }
                         }
                         .value{
-                            font-weight: 700;
                             font-size: 36px;
+                            @media only screen and (max-width:780px) {
+                                font-size: 28px;
+                            }
+                            @media only screen and (max-width:580px) {
+                                font-size: 22px;
+                            }
                         }
 
                     }
@@ -353,33 +437,53 @@ export default {
                 }
             }
             .chart-container{
+                
+                height: 600px;
                 width: 100%;
                 margin: 0 50px;
                 align-self: center;
                 border-left: 1px solid #85C250;
-                padding-left: 20px;
+                padding-left: 20px; 
+                @media only screen and (max-width:1560px) {
+                    margin-bottom: 30px;
+                    border-left: none;
+                    padding-left: 0px; 
+                }
             }
             
             .connectWallet{
-                width: 485px;
+                width: 100%;
+                max-width: 485px;
                 background: #FFFFFF;
                 border-radius: 7px;
                 padding: 34px 20px;
                 display: flex;
                 flex-direction: column;
-
+                @media only screen and (max-width:1560px) {
+                    max-width: 100%;
+                }
+               
 
                 .navigation{
                     display: flex;
                     align-items: flex-start;
                     justify-content: space-between;
                     text-transform: capitalize;
+                    @media only screen and (max-width:580px) {
+                        flex-direction: column;
+
+                    }
                     .buttons{
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         background: #D1E8BD;
                         border-radius: 7px;
+                        @media only screen and (max-width:580px) {
+                            width: 100%;
+                            justify-content: space-between;
+                            margin-bottom: 30px;
+                        }
                         &:first-child{
                             margin-right: 20px;
                         }
@@ -390,7 +494,10 @@ export default {
                             border-radius: 7px;
                             color: #676D7A;
                             cursor: pointer;
-                            
+                            @media only screen and (max-width:580px) {
+                                width: 50%;
+                                text-align: center;
+                            }
                             &:hover,&:active{
                                 background: #85C250;
                                 color: #000;
@@ -416,8 +523,21 @@ export default {
                             border-radius: 0 7px 7px 0;
                             display: flex;
                             align-items: center;
-                            justify-content: center;
                             padding: 10px 12px;
+                            input[type="number"]{
+                                text-align: right;
+                                width: 40px;
+                                border: none;
+                                outline: none;
+                                font-weight: 600;
+                                font-size: 16px;
+                                background: transparent;
+                                &::-webkit-outer-spin-button,
+                                &::-webkit-inner-spin-button {
+                                    -webkit-appearance: none;
+                                    margin: 0;
+                                }
+                            }
                         }
                     }
                 }
@@ -457,6 +577,9 @@ export default {
                         border: 1px solid #85C250;
                         border-radius: 7px;
                         width: 406px;
+                        @media only screen and (max-width:580px) {
+                            width: 100%;
+                        }
                         .firstInput{
                             border-right: 1px solid #85C250;                       
                         }
@@ -481,8 +604,8 @@ export default {
                         }
                         input::-webkit-outer-spin-button,
                         input::-webkit-inner-spin-button {
-                        -webkit-appearance: none;
-                        margin: 0;
+                            -webkit-appearance: none;
+                            margin: 0;
                         }
                     }
                 }
@@ -544,6 +667,12 @@ export default {
                     font-size: 24px;
                     margin-top: 52px;
                     transition: all .25s;
+                    @media only screen and (max-width:780px) {
+                        padding: 10px 15px;
+                        font-weight: 600;
+                        font-size: 20px;
+                        margin-top: 32px;
+                    }
                     &:active,&:hover{
                         border: 3px solid #D1E8BD;
                         color: #85C250;
@@ -564,6 +693,9 @@ export default {
                             background: #070E0C;
                             border: 1px solid rgba(27, 209, 156, 0.12);
                             color: #fff;
+                            input[type="number"]{
+                               color: #fff;
+                            }
                         }
                     }
                 }

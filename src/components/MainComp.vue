@@ -1,6 +1,7 @@
 <template>
   <main class="main row" :class="nightMode? 'main-night':''">
     <div class="tokens">
+        <h3 class="allocation">Allocation <div class="h-line"></div></h3>
         <table cellspacing="30">
         <tr>
             <th>TOKEN</th> <th>VALUE PER TOKEN</th> <th>24HR CHANGE</th>
@@ -30,18 +31,7 @@
             <button class="showBtn" @click="showAll =! showAll" v-else>Show All</button>
         </tr>
         </table>
-        <div class="doughnut-container">
-            <h3>Allocation</h3>
-            <div class="popup">
-                <div class="flex">
-                    <img :src="require(`@/assets/${selectedToken.icon}`)" alt="" class="icon">
-                    <h2>Uniswap</h2>
-                </div>
-                <h3>Allocation</h3>
-                <div class="value">{{selectedToken.value}}%</div>
-            </div>
-            <DoughnutChart/>
-        </div>
+       
     </div>
     
   </main>
@@ -77,20 +67,62 @@ export default {
 <style lang="scss" scoped>
     .main{
         margin-bottom: 150px;
+        @media only screen and (max-width:780px) {
+            margin-bottom: 80px;
+        }
         .tokens{
             display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
             align-items: flex-start;
-            justify-content: space-around;
-
-            table{
+            .allocation{
                 width: 100%;
-                margin-right: 247px;
+                font-weight: 700;
+                font-size: 36px;
+                color: #85C250;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                @media only screen and (max-width:580px) {
+                    font-weight: 500;
+                }
+                @media only screen and (max-width:480px) {
+                    font-size: 22px;
+                }
+                .h-line{
+                    width: 100%; 
+                    margin-left: 10px;                   
+                    border-bottom: 2px solid #85c25086;
+                }
+            }
+            table{
+                width: 70%;                
+                align-self: flex-end;
                 color: #383838;
+                @media only screen and (max-width:980px) {
+                   width: 90%;
+                }
+                @media only screen and (max-width:780px) {
+                   width: 100%;
+                   border-spacing: 10px;
+                }
+                @media only screen and (max-width:580px) {  
+                   border-spacing: 5px;
+                }
                 tr{
                     th{
                         font-weight: 600;
                         font-size: 24px;
                         margin-bottom: 30px;
+                        @media only screen and (max-width:780px) {
+                            font-size: 20px;
+                        }
+                        @media only screen and (max-width:580px) {
+                            font-size: 16px;
+                        }
+                        @media only screen and (max-width:480px) {
+                            font-size: 12px;
+                        }
                         &:first-child{
                             text-align: left;
                         }
@@ -98,23 +130,54 @@ export default {
                     .tokenIcon{
                             width: 55px;
                             margin-right: 20px;
+                            @media only screen and (max-width:780px) {
+                                width: 30px;
+                                margin-right: 10px;
+                            }
                         }
                     .tokenTitle{
                         display: flex; 
                         align-items: center;
                         font-weight: 500;
-                        font-size: 30.8223px;
+                        font-size: 24px;
+                        @media only screen and (max-width:780px) {
+                            font-size: 18px;
+                        }
+                        @media only screen and (max-width:580px) {
+                            font-size: 14px;
+                        }
+                        @media only screen and (max-width:480px) {
+                            font-size: 10px;
+                        }
                     }
                     .tokenValue{
                         text-align: center;
                         font-weight: 600;
-                        font-size: 30.8223px;
+                        font-size: 24px;
+                        @media only screen and (max-width:780px) {
+                            font-size: 18px;
+                        }
+                        @media only screen and (max-width:580px) {
+                            font-size: 14px;
+                        }
+                        @media only screen and (max-width:480px) {
+                            font-size: 10px;
+                        }
                     }
                     .tokenChange{
                         font-weight: 600;
-                        font-size: 30.8223px;
+                        font-size: 24px;
                         text-align: center;
                         color: #85C250;
+                        @media only screen and (max-width:780px) {
+                            font-size: 18px;
+                        }
+                        @media only screen and (max-width:580px) {
+                            font-size: 14px;
+                        }
+                        @media only screen and (max-width:480px) {
+                            font-size: 10px;
+                        }
                     }
 
                 }
@@ -128,58 +191,15 @@ export default {
                     border: none;
                     outline: none;
                     cursor: pointer;
-                }
-            }
-            .doughnut-container{
-                position:relative;
-                h3{
-                    text-align: right;
-                    margin-bottom: 100px;
-                    font-weight: 700;
-                    font-size: 36px;
-                    color: #85C250;
-                }
-                .popup{
-                    position: absolute;
-                    left: 100px;
-                    top: 100px;
-                    width: 334px;
-                    padding: 25px 24px;
-                    background: #FEFEFE;
-                    border: 1px solid #85C250;
-                    border-radius: 7px;
-
-                    .flex{
-                        display: flex;
-                        align-items: center;
-                        margin-bottom: 17px;
-                        img{
-                            width: 50px;
-                            height: 50px;
-                            border-radius: 50%;
-                            margin-right: 18px;
-                        }
-                        h2{
-                            font-weight: 600;
-                            font-size: 28px;
-                            color: #383838;
-                        }
+                    @media only screen and (max-width:780px) {
+                        font-size: 20px;
                     }
-                    h3{
-                        text-align: left;
-                        font-weight: 600;
-                        font-size: 16px;
-                        color: #383838;
-                        margin-bottom: 8px;
-                    }
-                    .value{
-                        font-weight: 600;
-                        font-size: 22px;
-                        color: #676D7A;
+                    @media only screen and (max-width:580px) {
+                        font-size: 14px;
+                        font-weight: 500;
                     }
                 }
             }
-
         }
     }
     .main-night{
@@ -199,31 +219,7 @@ export default {
                 .showBtn{
                     color: #fff;
                 }
-            }
-            .doughnut-container{
-                position:relative;
-                h3{
-                    text-align: right;
-                    margin-bottom: 100px;
-                    font-weight: 700;
-                    font-size: 36px;
-                    color: #85C250;
-                }
-                .popup{
-                    background: #02140F;
-                    .flex{
-                        h2{
-                            color: #ffffff;
-                        }
-                    }
-                    h3{
-                        color: #ffffff;
-                    }
-                    .value{
-                        color: #ADADAD;
-                    }
-                }
-            }
+            }            
         }
     }
 

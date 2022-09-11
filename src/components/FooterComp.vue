@@ -147,13 +147,13 @@ export default {
             font-size: 18px;
             line-height: 30px;
             color: #383838;
-            @media only screen and (max-width:580px){
-                font-size: 14px;
-                line-height: 18px;
-            }
             @media only screen and (max-width:920px){
                 flex-direction: column;
                 justify-content: center;
+            }
+            @media only screen and (max-width:580px){
+                font-size: 10px;
+                line-height: 18px;
             }
 
             .right-links{

@@ -41,7 +41,7 @@
     <ul class="buttons">
         <li><router-link to="" class="btn" :class="nightMode?'btn-night':''">Index</router-link></li>
         <li><router-link to="" class="btn" :class="nightMode?'btn-night':''">Vault</router-link></li>
-        <li><router-link to="" class="btn" :class="nightMode?'btn-night':''">Staking</router-link></li>
+        <li><router-link to="" class="btn" :class="nightMode?'btn-night':''">SWAP</router-link></li>
     </ul>
     <div class="right">
         <div class="toggleBtn" @click="handleDarkMode"><span id="toggleDot"></span></div>
@@ -63,8 +63,17 @@
         @media only screen and (min-width:1600px){
             padding: 15px 100px;
         }
+        @media only screen and (max-width:580px){
+            padding: 15px 10px;
+        }
         .logo{
-            width: 100px;            
+            width: 100px;       
+            @media only screen and (max-width:780px) {
+                width: 70px;
+            }     
+            @media only screen and (max-width:580px) {
+                width: 45px;
+            } 
         }
         .buttons{
             display: flex;
@@ -73,6 +82,15 @@
             list-style: none;
             &>*:not(:last-child){
                 margin-right: 60px;
+                @media only screen and (max-width:980px) {
+                   margin-right: 20px;
+                }
+                @media only screen and (max-width:780px) {
+                   margin-right: 10px;
+                }
+                @media only screen and (max-width:580px) {
+                    margin-right: 0px;
+                } 
             }
             .btn{
                 font-weight: 500;
@@ -81,6 +99,18 @@
                 border-radius: 7px;
                 color: #676D7A;
                 transition: all .25s;
+                @media only screen and (max-width:780px) {
+                    font-size: 20px;
+                    padding: 6px 14px;
+                } 
+                @media only screen and (max-width:580px) {
+                    font-size: 16px;
+                    padding: 6px 10px;
+                }
+                @media only screen and (max-width:400px) {
+                    font-size: 14px;
+                    padding: 6px;
+                }
                 &:active,&:hover{
                     background: #85C250;
                     color: #FFFFFF;
@@ -104,6 +134,16 @@
                 transition: all .25s;
                 cursor: pointer;
                 margin-right: 146px;
+                @media only screen and (max-width:980px) {
+                   margin-right: 50px;
+                }
+                @media only screen and (max-width:780px) {
+                    margin-right: 20px;
+                } 
+                @media only screen and (max-width:580px) {
+                    transform: scale(.8);
+                    margin-right: 10px;
+                } 
                 #toggleDot{
                     width: 24px;
                     height: 24px;
@@ -126,6 +166,21 @@
                 outline: none;
                 cursor: pointer;
                 transition: all .25s;
+                @media only screen and (max-width:780px) {
+                    padding: 10px 20px;
+                    font-weight: 700;
+                    font-size: 20px;
+                }
+                @media only screen and (max-width:580px) {
+                    padding: 5px 10px;
+                    font-weight: 600;
+                    font-size: 14px;
+                } 
+                @media only screen and (max-width:400px) {
+                    padding: 5px 8px;
+                    font-weight: 500;
+                    font-size: 12px;
+                }
                 &:active,&:hover{
                     color: #85C250;
                     background:  #fff;
