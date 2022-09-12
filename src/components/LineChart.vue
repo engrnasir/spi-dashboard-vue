@@ -8,10 +8,11 @@
   </template>
   <script>
   import { Line } from 'vue-chartjs'
-  import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, LinearScale, PointElement, CategoryScale, Plugin } from 'chart.js'
+  import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, LinearScale, PointElement, CategoryScale, Plugin, Filler,BorderRadius } from 'chart.js'
   import gradient from 'chartjs-plugin-gradient';
   
-  ChartJS.register(Title, Tooltip, Legend,LineElement, PointElement, CategoryScale, LinearScale, gradient )
+  ChartJS.register(Title, Tooltip, Legend,LineElement, PointElement, CategoryScale, LinearScale, gradient, Filler )
+  
   
   export default {
     name: 'LineChart',
@@ -27,7 +28,7 @@
       },
       width: {
         type: Number,
-        default: 400
+        default: 600
       },
       height: {
         type: Number,
@@ -54,11 +55,21 @@
               {
               data: [40, 39, 10, 40, 39, 80, 40],
               label: '',
-              backgroundColor: '#85C250', 
+              // backgroundColor: '#85C250', 
               borderColor: ["#85C250"],
+              radius: 0,
               tension:0.3,
+              borderWidth: 1,
               fill:true,
-              backgroundColor: '#85C250', 
+              backgroundColor: (ctx) => {
+                const canvas = ctx.chart.ctx;
+                const gradient = canvas.createLinearGradient(0,0,0,600);
+
+                gradient.addColorStop(0, '#85c250a6');
+                gradient.addColorStop(1, '#d1e8bd6b');
+
+                return gradient;
+              },
             }
           ],
         },
@@ -81,6 +92,9 @@
                 legend:{
                     display:false,
                 },
+                filler: {
+                    propagate: true
+                }
               }
             }
           }
