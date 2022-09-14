@@ -2,7 +2,7 @@
   <main class="main row" :class="nightMode? 'main-night':''">
     <div class="tokens">
         <h3 class="allocation">Allocation <div class="h-line"></div></h3>
-        <table cellspacing="30">
+        <table cellspacing="30" >
         <tr>
             <th>TOKEN</th> <th>VALUE PER TOKEN</th> <th>24HR CHANGE</th>
         </tr>
@@ -96,9 +96,11 @@ export default {
                 }
             }
             table{
+                border-collapse: collapse;
                 width: 70%;                
                 align-self: flex-end;
                 color: #383838;
+                
                 @media only screen and (max-width:980px) {
                    width: 90%;
                 }
@@ -110,6 +112,12 @@ export default {
                    border-spacing: 5px;
                 }
                 tr{
+                    border-bottom: solid thin rgba(0, 0, 0, 0.2);
+                    padding: 20px 0;
+                    line-height: 100px;
+                    &:last-child{
+                        border: none;
+                    }
                     th{
                         font-weight: 600;
                         font-size: 24px;
@@ -206,6 +214,7 @@ export default {
         .tokens{
             table{
                 tr{
+                    border-bottom: solid thin rgba(255, 255, 255, 0.2);
                     th{
                         color: #ADADAD;
                     }

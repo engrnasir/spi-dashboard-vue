@@ -7,18 +7,22 @@
                     </div>
                     <div class="spillage">
                         <p class="text">Slippage</p>
-                        <p class="value"><input type="number" placeholder="1" v-model="spillageVal">%</p>
+                        <p class="value"><input type="number" placeholder="1" v-model="sVal" @change="updateSllipageVal(sVal)">%</p>
                     </div>
                 </div>
                 <div class="swap-container">
+<!-------------------------------------- SWAP FROM -->
                     <div class="swap swapFrom">
                         <div class="swapHeader">
-                            <img src="@/assets/eth-icon.png" alt="" id="swapFromIcon" class="icon">
+                            <img :src="require(`@/assets/${currencyFrom.icon}`)" alt="" id="swapFromIcon" class="icon">
                             <div class="selectInput">
                                 <p class="title">Swap From</p>
-                                <select name="firstCurrency" id="" @change="updateIcon('from')" v-model="swapFrom">
-                                    <option :value="currency.value" v-for="(currency, index) in currencies" :key="index">{{currency.title}}</option>
-                                </select>
+                                <div class="select" @click="togglePopup(true); setPopupType('swapFrom')">
+                                    {{currencyFrom.title}}
+                                    <img src="@/assets/downward-arrow-night.png" alt="" v-if="nightMode">
+                                    <img src="@/assets/downward-arrow.png" alt="" v-else>
+                                </div>
+                                
                             </div>
                         </div>
                         <div class="inputs">
@@ -35,18 +39,22 @@
                             Balance {{balance}} <button class="maxBtn">Max</button>
                         </div>
                     </div>
+
                     <div class="swapButton" @click="swapReverse">
                         <img src="@/assets/up-arrow.png" alt="">
                         <img src="@/assets/down-arrow.png" alt="">
                     </div>
+<!-------------------------------------- SWAP TO -->
                     <div class="swap swapTo">
                         <div class="swapHeader">
-                            <img src="@/assets/logo.png" alt="" id="swapToIcon" class="icon">
+                            <img :src="require(`@/assets/${currencyTo.icon}`)" alt="" id="swapFromIcon" class="icon">
                             <div class="selectInput">
                                 <p class="title">Swap To</p>
-                                <select name="firstCurrency" id="" @change="updateIcon('to')" v-model="swapTo">
-                                    <option :value="currency.value" v-for="(currency, index) in currencies" :key="index">{{currency.title}}</option>
-                                </select>
+                                <div class="select" @click="togglePopup(true); setPopupType('swapTo')">
+                                    {{currencyTo.title}}
+                                    <img src="@/assets/downward-arrow-night.png" alt="" v-if="nightMode">
+                                    <img src="@/assets/downward-arrow.png" alt="" v-else>
+                                </div>
                             </div>
                         </div>
                         <div class="inputs">
@@ -66,46 +74,38 @@
 </template>
 
 <script>
-    import { mapState } from "vuex";
+import { mapMutations } from 'vuex';
     export default {
-        data() {
-            return {
-                spillageVal: 1,
-                currencies: [
-                    { icon: "eth-icon.png", title: "ETH", value: "eth" },
-                    { icon: "logo.png", title: "SPI", value: "spi" },
-                ],
-                swapFrom: "eth",
-                swapTo: "spi",
-                balance: 0
-            };
+    data() {
+        return {
+            sVal: this.sllipageVal,
+        };
+    },
+    computed: {
+        nightMode(){ return this.$store.state.nightMode; },
+        showPopup(){ return this.$store.state.showPopup; },
+        
+        sllipageVal(){ return this.$store.state.sllipageVal },
+        currencies(){ return this.$store.state.currencies },
+        currencyFrom(){ return this.$store.state.currencyFrom },
+        currencyTo(){ return this.$store.state.currencyTo },
+        balance(){ return this.$store.state.balance },
+    },
+    methods: {
+        ...mapMutations([
+            'togglePopup', 
+            'updateSllipageVal', 
+            'setPopupType', 
+            'setCurrency'
+        ]),
+        swapReverse(){
+            let copyCurrFrom = this.currencyFrom
+            this.setCurrency({ type:'swapFrom', currency:this.currencyTo })
+            this.setCurrency({ type:'swapTo', currency:copyCurrFrom })
         },
-        computed:{
-            ...mapState([
-                'nightMode'
-            ])
-        },
-        methods:{
-            updateIcon(swap) {
-                if (swap === "from") {
-                    const currency = this.currencies.find((el) => el.value === this.swapFrom);
-                    document.getElementById("swapFromIcon").src = require(`@/assets/${currency.icon}`);
-                }
-                else if (swap === "to") {
-                    const currency = this.currencies.find((el) => el.value === this.swapTo);
-                    document.getElementById("swapToIcon").src = require(`@/assets/${currency.icon}`);
-                }
-            },
-            swapReverse() {
-                const temp = this.swapFrom;
-                this.swapFrom = this.swapTo;
-                this.swapTo = temp;
-                this.updateIcon("from");
-                this.updateIcon("to");
-            }
-        },
-    }
-    </script>
+    },    
+}
+</script>
     
 
 <style lang="scss" scoped>
@@ -224,17 +224,18 @@
                                 font-weight: 500;
                                 font-size: 13px;
                                 color: #676D7A;                               
-                                
                             }
-                            select{
-                                position: relative;
-                                background: transparent;
-                                border: none;
-                                outline: none;
+                            .select{
+                                display: flex;
+                                align-items: center;
                                 font-weight: 600;
                                 font-size: 22px;
                                 padding: 12px 0;
-                                cursor: pointer;                               
+                                cursor: pointer;
+                                img{
+                                    width: 10px;    
+                                    margin-left: 5px;
+                                }                               
                             }   
                             
                         }
@@ -381,7 +382,7 @@
                             margin-right: 16px;
                         }
                         .selectInput{
-                            select{
+                            .select{
                               color: #fff;                           
                             }     
                         }

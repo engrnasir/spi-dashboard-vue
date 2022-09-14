@@ -311,7 +311,7 @@ export default {
                     .item{
                         padding: 36px 16px;
                         padding-bottom: 0;
-                        color: #85C250;
+                        color: #000000;
                         font-weight: 500;
                         @media only screen and (max-width:580px) {
                             padding: 20px;
@@ -347,6 +347,9 @@ export default {
                 }
                 .items{
                     background: linear-gradient(172.57deg, #51683D 2.9%, rgba(81, 104, 61, 0) 69.84%);
+                    .item{
+                        color: #fff;
+                    }
                 }
             }
             .chart-container{
